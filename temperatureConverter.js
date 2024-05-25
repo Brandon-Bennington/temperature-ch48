@@ -1,28 +1,29 @@
 let conversionType;
 
-function chooseConversionType() {
-    let choice = prompt("Type 'C' to convert Celsius to Fahrenheit or 'F' to convert Fahrenheit to Celsius:");
-
-    if (choice.toUpperCase() === 'C') {
-        conversionType = 'CtoF';
-        document.getElementById("conversion-form").style.display = "block";
-    } else if (choice.toUpperCase() === 'F') {
-        conversionType = 'FtoC';
-        document.getElementById("conversion-form").style.display = "block";
-    } else {
-        alert("Invalid choice. Please try again.");
-    }
+function startConversion() {
+    document.getElementById("conversion-form").style.display = "block";
 }
 
-function convertTemperature() {
-    let temperature = document.getElementById("temperature").value;
-    let result;
+function convertTemperatureRange() {
+    const startValue = parseFloat(document.getElementById("startTemperature").value);
+    const endValue = parseFloat(document.getElementById("endTemperature").value);
+    const scale = document.getElementById("scale").value.toUpperCase();
+    const results = document.getElementById("results");
+    results.innerHTML = '';
 
-    if (conversionType === 'CtoF') {
-        result = (temperature * 9/5) + 32;
-        document.getElementById("result").textContent = `${temperature}°C is ${result.toFixed(2)}°F`;
-    } else if (conversionType === 'FtoC') {
-        result = (temperature - 32) * 5/9;
-        document.getElementById("result").textContent = `${temperature}°F is ${result.toFixed(2)}°C`;
+    if (isNaN(startValue) || isNaN(endValue) || (scale !== 'C' && scale !== 'F')) {
+        alert("Please enter valid inputs.");
+        return;
+    }
+
+    for (let temp = startValue; temp <= endValue; temp++) {
+        let convertedTemp;
+        if (scale === 'C') {
+            convertedTemp = (temp * 9/5) + 32;
+            results.innerHTML += `${temp}°C is ${convertedTemp.toFixed(2)}°F<br>`;
+        } else if (scale === 'F') {
+            convertedTemp = (temp - 32) * 5/9;
+            results.innerHTML += `${temp}°F is ${convertedTemp.toFixed(2)}°C<br>`;
+        }
     }
 }

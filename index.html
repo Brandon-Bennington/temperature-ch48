@@ -69,16 +69,19 @@
         <div class="calculator-container">
             <div class="temperature-converter">
                 <h2>Temperature Converter</h2>
-                <button onclick="chooseConversionType()">Start Conversion</button>
+                <button onclick="startConversion()">Start Conversion</button>
                 <div id="conversion-form" style="display: none;">
-                    <label for="temperature">Enter Temperature:</label>
-                    <input type="number" id="temperature">
-                    <button onclick="convertTemperature()">Convert</button>
+                    <label for="startTemperature">Enter Start Temperature:</label>
+                    <input type="number" id="startTemperature"><br>
+                    <label for="endTemperature">Enter End Temperature:</label>
+                    <input type="number" id="endTemperature"><br>
+                    <label for="scale">Enter Scale (C/F):</label>
+                    <input type="text" id="scale"><br>
+                    <button onclick="convertTemperatureRange()">Convert Range</button>
                 </div>
-                <p id="result"></p>
+                <div id="results"></div>
             </div>
         </div>
-    </div>
 
     <script src="basicCalculator.js"></script>
     <script src="productCalculator.js"></script>
